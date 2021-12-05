@@ -1,15 +1,4 @@
 <template>
-  <div>
-    {{ $store.state.user.profile.account }}
-    <button @click="$store.commit('user/setUser', { account: 'zz' })">1</button>
-  </div>
+  <!-- 一级路由 -->
+  <router-view />
 </template>
-
-<script>
-export default {
-  name: "App",
-
-  setup(props) {},
-};
-</script>
-<style lang="scss" scoped></style>
