@@ -11,3 +11,8 @@ utils/request.js
     encodeURIComponent() 进行URI编码
     [method.toLowerCase() === "get" ? "params" : "data"]: submitData   对象使用动态key
 ```
+
+```
+vue.config.js
+    style-resources-loader 配置scss等文件自动注入
+```
