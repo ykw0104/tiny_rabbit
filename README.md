@@ -19,5 +19,8 @@ vue.config.js
 
 ```
 app-header-nav.vue
-    二级类目的使用
+    1. 二级类目的使用
+        关键样式: height: 0; opacity: 0; overflow: hidden;
+    2. 二级类目的显示和隐藏
+        通过:class="{ open: item.open }" 控制 (一级类目的鼠标移入,移出,点击 和 二级类目的点击会改变open值)
 ```

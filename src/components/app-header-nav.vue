@@ -1,44 +1,73 @@
 <template>
   <ul class="app-header-nav">
     <li class="home"><RouterLink to="/">首页</RouterLink></li>
-    <li>
+
+    <!-- 一级和二级类目 -->
+    <li
+      v-for="item in list"
+      :key="item.id"
+      @mouseenter="show(item)"
+      @mouseleave="hidden(item)"
+    >
       <!-- 一级类目 -->
-      <a href="#">美食</a>
+      <RouterLink :to="`/category/${item.id}`" @click="hidden(item)">{{
+        item.name
+      }}</RouterLink>
+
       <!-- 二级类目 -->
-      <div class="layer">
+      <div class="layer" :class="{ open: item.open }">
         <ul>
-          <li v-for="i in 10" :key="i">
-            <a href="#">
-              <img
-                src="http://zhoushugang.gitee.io/erabbit-client-pc-static/uploads/img/category%20(4).png"
-                alt=""
-              />
-              <p>果干</p>
-            </a>
+          <li v-for="subItem in item.children" :key="subItem.id">
+            <RouterLink
+              :to="`/category/sub/${subItem.id}`"
+              @click="hidden(item)"
+            >
+              <img :src="subItem.picture" alt="" />
+              <p>{{ subItem.name }}</p>
+            </RouterLink>
           </li>
         </ul>
       </div>
     </li>
-    <li><a href="#">餐厨</a></li>
-    <li><a href="#">艺术</a></li>
-    <li><a href="#">电器</a></li>
-    <li><a href="#">居家</a></li>
-    <li><a href="#">洗护</a></li>
-    <li><a href="#">孕婴</a></li>
-    <li><a href="#">服装</a></li>
-    <li><a href="#">杂货</a></li>
   </ul>
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
   name: "AppHeaderNav",
+
+  setup() {
+    const store = useStore();
+    // 获取分类列表
+    const list = computed(() => store.state.category.list);
+
+    /* 二级类目的显示: 鼠标移入一级类目 */
+    const show = (item) => {
+      store.commit("category/show", item.id);
+    };
+
+    /* 二级类目的隐藏: 鼠标移出一级类目, 鼠标点击一级类目, 鼠标点击二级类目 */
+    const hidden = (item) => {
+      store.commit("category/hidden", item.id);
+    };
+
+    return {
+      list,
+
+      hidden,
+      show,
+    };
+  },
 };
 </script>
 <style lang="scss">
 .app-header-nav {
-  position: relative;
   display: flex;
+  position: relative;
+  z-index: 998;
   justify-content: space-around;
   width: 820px;
   padding-left: 40px;
@@ -61,11 +90,11 @@ export default {
         border-bottom: 1px solid $xtxColor;
       }
 
-      > .layer {
-        // 二级类别的显示
-        height: 132px;
-        opacity: 1;
-      }
+      // > .layer {
+      //   // 二级类别的显示, 不再hover控制, 通过js控制
+      //   height: 132px;
+      //   opacity: 1;
+      // }
     }
   }
 
@@ -110,6 +139,12 @@ export default {
         }
       }
     }
+  }
+
+  /*  二级类别的显示 */
+  .layer.open {
+    height: 132px;
+    opacity: 1;
   }
 }
 </style>

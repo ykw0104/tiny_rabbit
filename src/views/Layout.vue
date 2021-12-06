@@ -6,18 +6,21 @@
   <AppHeader />
 
   <!-- 3. 内容容器 -->
-  <div class="main">
+  <main class="app-body">
     <!-- 二级路由 -->
-    <router-view />
-  </div>
+    <RouterView />
+  </main>
 
   <!-- 4. 底部组件 -->
-  <footer>底部组件</footer>
+  <AppFooter />
 </template>
 
 <script>
 import AppNavbar from "@/components/app-navbar";
 import AppHeader from "@/components/app-header";
+import AppFooter from "@/components/app-footer";
+
+import { useStore } from "vuex";
 
 export default {
   name: "Layout",
@@ -25,7 +28,18 @@ export default {
   components: {
     AppNavbar,
     AppHeader,
+    AppFooter,
+  },
+
+  setup() {
+    const store = useStore();
+    // 请求分类
+    store.dispatch("category/getList");
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-body {
+  min-height: 600px;
+}
+</style>
