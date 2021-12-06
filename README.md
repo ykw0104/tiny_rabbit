@@ -24,3 +24,9 @@ app-header-nav.vue
     2. 二级类目的显示和隐藏
         通过:class="{ open: item.open }" 控制 (一级类目的鼠标移入,移出,点击 和 二级类目的点击会改变open值)
 ```
+
+```
+app-header-sticky
+    顶部吸顶功能
+      关键样式: opacity:0;  transform: translateY(-100%);
+```

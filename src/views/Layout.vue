@@ -1,9 +1,11 @@
 <template>
-  <!-- 1. 顶部通栏 -->
+  <!-- 1 顶部通栏 -->
   <AppNavbar />
 
-  <!-- 2. 头部组件 -->
+  <!-- 2.1 头部组件 -->
   <AppHeader />
+  <!-- 2.2 头部吸顶组件 -->
+  <AppHeaderSticky />
 
   <!-- 3. 内容容器 -->
   <main class="app-body">
@@ -19,6 +21,7 @@
 import AppNavbar from "@/components/app-navbar";
 import AppHeader from "@/components/app-header";
 import AppFooter from "@/components/app-footer";
+import AppHeaderSticky from "@/components/app-header-sticky";
 
 import { useStore } from "vuex";
 
@@ -29,6 +32,7 @@ export default {
     AppNavbar,
     AppHeader,
     AppFooter,
+    AppHeaderSticky,
   },
 
   setup() {
