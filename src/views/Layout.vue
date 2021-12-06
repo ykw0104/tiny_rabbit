@@ -3,7 +3,7 @@
   <AppNavbar />
 
   <!-- 2. 头部组件 -->
-  <header>头部组件</header>
+  <AppHeader />
 
   <!-- 3. 内容容器 -->
   <div class="main">
@@ -17,12 +17,14 @@
 
 <script>
 import AppNavbar from "@/components/app-navbar";
+import AppHeader from "@/components/app-header";
 
 export default {
   name: "Layout",
 
   components: {
     AppNavbar,
+    AppHeader,
   },
 };
 </script>

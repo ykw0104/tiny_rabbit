@@ -16,3 +16,8 @@ utils/request.js
 vue.config.js
     style-resources-loader 配置scss等文件自动注入
 ```
+
+```
+app-header-nav.vue
+    二级类目的使用
+```
