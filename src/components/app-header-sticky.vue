@@ -16,22 +16,24 @@
 <script>
 import AppHeaderNav from "./app-header-nav";
 
-import { ref, onMounted } from "vue";
+// import { ref, onMounted } from "vue";
+import { useWindowScroll } from "@vueuse/core";
 
 export default {
   name: "AppHeaderSticky",
   components: { AppHeaderNav },
   setup() {
-    const y = ref(0);
+    // const y = ref(0);
+    // onMounted(() => {
+    //   /* 实时记录卷去的高度 */
+    //   window.onscroll = () => {
+    //     const scrollTop = document.documentElement.scrollTop;
+    //     y.value = scrollTop;
+    //   };
+    // });
 
-    onMounted(() => {
-      /* 实时记录卷去的高度 */
-      window.onscroll = () => {
-        const scrollTop = document.documentElement.scrollTop;
-        y.value = scrollTop;
-      };
-    });
-
+    // 获取y卷去的高度
+    const { y } = useWindowScroll();
     return {
       y,
     };
