@@ -29,4 +29,5 @@ app-header-nav.vue
 app-header-sticky
     顶部吸顶功能
       关键样式: opacity:0;  transform: translateY(-100%);
+      :class="{ show: y >= 78 }"  卷去高度大于78px, 显示头部吸顶
 ```
