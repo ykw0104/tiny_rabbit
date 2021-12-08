@@ -3,13 +3,14 @@
     <!-- 左侧分类菜单 -->
     <ul class="menu">
       <li
-        :class="{ active: categoryId === item.id }"
+        :class="{ active: categoryId && categoryId === item.id }"
         v-for="item in menuList"
         :key="item.id"
         @mouseenter="categoryId = item.id"
       >
         <!-- 一级分类 -->
         <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+
         <!-- 二级分类(只取两个) -->
         <template v-if="item.children">
           <RouterLink
@@ -18,6 +19,15 @@
             :to="`/category/sub/${subItem.id}`"
             >{{ subItem.name }}</RouterLink
           >
+        </template>
+        <template v-else>
+          <XtxSkeleton
+            width="60px"
+            height="18px"
+            style="margin-right: 5px"
+            bg="rgba(255,255,255,0.2)"
+          />
+          <XtxSkeleton width="50px" height="18px" bg="rgba(255,255,255,0.2)" />
         </template>
       </li>
     </ul>
@@ -61,7 +71,7 @@
 </template>
 
 <script>
-import { computed, ref, reactive } from "vue";
+import { computed, ref, reactive, watch } from "vue";
 import { useStore } from "vuex";
 import { $findBrand } from "@/api/home";
 
@@ -255,6 +265,21 @@ export default {
     .layer {
       display: block;
     }
+  }
+}
+
+/* 骨架动画 */
+.xtx-skeleton {
+  animation: fade 1s linear infinite alternate;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 </style>
