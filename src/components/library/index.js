@@ -4,10 +4,12 @@
 // vue3.0插件写法要素：导出一个对象，有install函数，默认传入了app应用实例，app基础之上扩展
 
 import XtxSkeleton from "./xtx-skeleton.vue";
+import XtxCarousel from "./xtx-carousel.vue";
 
 export default {
   install(app) {
     // 定义全局组件
-    app.component(XtxSkeleton.name, XtxSkeleton);
+    app.component(XtxSkeleton.name, XtxSkeleton); // 骨架屏
+    app.component(XtxCarousel.name, XtxCarousel); // 轮播图
   },
 };

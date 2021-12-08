@@ -34,5 +34,5 @@ app-header-sticky
 
 ```
 components/library/index.js
-    注册全局组件
+      注册全局组件, 最终在main.js中use()
 ```
