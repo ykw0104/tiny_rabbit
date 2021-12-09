@@ -5,11 +5,13 @@
 
 import XtxSkeleton from "./xtx-skeleton.vue";
 import XtxCarousel from "./xtx-carousel.vue";
+import XtxMore from "./xtx-more.vue";
 
 export default {
   install(app) {
     // 定义全局组件
     app.component(XtxSkeleton.name, XtxSkeleton); // 骨架屏
     app.component(XtxCarousel.name, XtxCarousel); // 轮播图
+    app.component(XtxMore.name, XtxMore); // 轮播图
   },
 };
