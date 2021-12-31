@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import HomePanel from "./home-panel";
 import { $findNew } from "@/api/home";
 import HomeSkeleton from "./home-skeleton";
@@ -38,8 +37,7 @@ export default {
     // $findNew().then((data) => {
     //   goods.value = data.result;
     // });
-    const target = ref(null);
-    const result = useLazyData(target, $findNew);
+    const { result, target } = useLazyData($findNew);
 
     return {
       goods: result,
