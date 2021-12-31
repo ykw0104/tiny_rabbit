@@ -25,3 +25,11 @@ export const $findBanner = () => {
 export const $findNew = () => {
   return request("/home/new", "GET");
 };
+
+/**
+ * 获取人气推荐
+ * @returns Promise
+ */
+export const $findHot = () => {
+  return request("/home/hot", "GET");
+};
