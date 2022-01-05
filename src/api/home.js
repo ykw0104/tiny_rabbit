@@ -41,3 +41,11 @@ export const $findHot = () => {
 export const $findGoods = () => {
   return request("/home/goods", "GET");
 };
+
+/**
+ * 获取最新专辑
+ * @returns Promise
+ */
+export const $findSpecial = () => {
+  return request("/home/special", "GET");
+};
