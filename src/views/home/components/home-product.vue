@@ -16,7 +16,7 @@
       <div class="box">
         <!-- 大盒子 -->
         <RouterLink class="cover" :to="`/category/${cate.id}`">
-          <img :src="cate.picture" alt="" />
+          <img v-lazy="cate.picture" alt="" />
           <strong class="label">
             <span>{{ cate.name }}馆</span>
             <span>{{ cate.saleInfo }}</span>

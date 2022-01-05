@@ -13,5 +13,41 @@ export default {
     app.component(XtxSkeleton.name, XtxSkeleton); // 骨架屏
     app.component(XtxCarousel.name, XtxCarousel); // 轮播图
     app.component(XtxMore.name, XtxMore); // 轮播图
+
+    // 定义指令
+    defineDirective(app);
   },
+};
+
+import defaultImg from "@/assets/images/200.png";
+// 定义指令
+const defineDirective = (app) => {
+  // 1.图片懒加载
+  app.directive("lazy", {
+    mounted(el, binding) {
+      const observer = new IntersectionObserver(
+        ([{ isIntersecting }]) => {
+          // 进入可视区
+          if (isIntersecting) {
+            // 停止观察
+            observer.unobserve(el);
+
+            // 图片加载失败
+            el.onerror = () => {
+              el.src = defaultImg;
+            };
+
+            // 需要加载的图片
+            el.src = binding.value;
+          }
+        },
+        {
+          threshold: 0,
+        }
+      );
+
+      // 开启观察
+      observer.observe(el);
+    },
+  });
 };
